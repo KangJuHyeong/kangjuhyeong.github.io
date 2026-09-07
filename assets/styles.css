@@ -29,6 +29,12 @@ h1 { margin-bottom: 2px; font-size: clamp(3.25rem, 10vw, 6.6rem); letter-spacing
 .skills-grid > div { padding: 20px; background: #fff; border: 1px solid #e0eaed; border-radius: 12px; }
 .skills-grid dt { margin-bottom: 7px; color: var(--accent); font-weight: 800; }
 .skills-grid dd { margin: 0; color: var(--slate); font-size: 0.94rem; }
+.background-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.background-card { padding: 28px 30px; background: #fff; border: 1px solid #e0eaed; border-radius: var(--radius); }
+.background-label { margin-bottom: 22px; color: var(--accent); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; }
+.background-entry + .background-entry { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e0eaed; }
+.background-entry h3 { margin-bottom: 4px; font-size: 1rem; letter-spacing: -0.03em; }
+.background-entry p { margin-bottom: 0; color: var(--slate); font-size: 0.88rem; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .project-card { display: flex; flex-direction: column; padding: 30px; background: #fff; border: 1px solid #dce7eb; border-radius: var(--radius); }
 .project-card.featured { border-color: #a9c9d3; background: #f0f7f8; }
@@ -46,5 +52,5 @@ h1 { margin-bottom: 2px; font-size: clamp(3.25rem, 10vw, 6.6rem); letter-spacing
 footer { display: flex; align-items: end; justify-content: space-between; gap: 40px; padding: 56px 0 64px; border-top: 1px solid var(--line); }
 .footer-links { display: grid; gap: 5px; color: var(--slate); font-size: 0.95rem; }
 .footer-links a { text-underline-offset: 4px; }
-@media (max-width: 720px) { .site-header, .section, footer { width: min(100% - 32px, 1080px); } .site-header { min-height: 70px; } nav { gap: 14px; font-size: 0.86rem; } .hero, .section { padding: 58px 0; } .skills-grid, .project-grid { grid-template-columns: 1fr; } .project-card { padding: 24px; } footer { flex-direction: column; align-items: flex-start; gap: 26px; padding: 46px 0; } }
+@media (max-width: 720px) { .site-header, .section, footer { width: min(100% - 32px, 1080px); } .site-header { min-height: 70px; } nav { gap: 14px; font-size: 0.86rem; } .hero, .section { padding: 58px 0; } .skills-grid, .background-grid, .project-grid { grid-template-columns: 1fr; } .project-card, .background-card { padding: 24px; } footer { flex-direction: column; align-items: flex-start; gap: 26px; padding: 46px 0; } }
 @media (max-width: 390px) { nav a:first-child { display: none; } .hero-actions .button { width: 100%; } }
