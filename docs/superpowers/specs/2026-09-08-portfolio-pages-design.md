@@ -10,7 +10,7 @@
 - 각 프로젝트에 공개 GitHub 저장소로 이동하는 링크를 둔다.
 - 현재 생성한 PDF 이력서를 다운로드할 수 있게 둔다.
 - 모바일과 데스크톱에서 읽기 쉬운 정적 페이지로 만든다.
-- 별도 프레임워크나 서버 없이 HTML, CSS, 소량의 JavaScript만 사용한다.
+- 별도 프레임워크나 서버 없이 HTML과 CSS만 사용한다.
 
 ## 정보 및 문구 원칙
 
@@ -25,13 +25,12 @@
 2. 핵심 기술: Backend, Data, Deploy, Workflow 네 개 묶음.
 3. Campuslink: 서비스 목적, 기술 태그, 핵심 구현 두 개, 저장소 링크.
 4. Reserva: 서비스 목적, 기술 태그, 동시 예약 정합성 구현, 저장소 링크.
-5. 하단: GitHub 프로필 링크와 마지막 업데이트 날짜.
+5. 하단: GitHub 프로필 링크와 포트폴리오 안내 문구.
 
 ## 파일 및 배포 구조
 
 - `index.html`: 의미 있는 HTML 구조와 포트폴리오 본문.
 - `assets/styles.css`: 색상, 반응형 레이아웃, 접근 가능한 focus 스타일.
-- `assets/app.js`: 현재 연도를 표시하는 소량의 동작.
 - `assets/resume.pdf`: 이력서 다운로드 파일.
 - `.github/workflows/pages.yml`: `main` 푸시 때 정적 파일을 GitHub Pages에 배포.
 

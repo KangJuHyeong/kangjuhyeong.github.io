@@ -4,9 +4,9 @@
 
 **Goal:** Build and publish a one-page GitHub Pages portfolio for backend developer 강주형.
 
-**Architecture:** A dependency-free static site places content in semantic HTML, presentation in one responsive stylesheet, and only the current year in JavaScript. GitHub Actions uploads the repository root as the Pages artifact when `main` changes.
+**Architecture:** A dependency-free static site places content in semantic HTML and presentation in one responsive stylesheet. GitHub Actions uploads the repository root as the Pages artifact when `main` changes.
 
-**Tech Stack:** HTML5, CSS3, vanilla JavaScript, Node.js built-in assertions, GitHub Actions, GitHub Pages.
+**Tech Stack:** HTML5, CSS3, GitHub Actions, GitHub Pages.
 
 **Spec:** `docs/superpowers/specs/2026-09-08-portfolio-pages-design.md`
 
@@ -20,31 +20,16 @@
 
 ---
 
-### Task 1: Semantic portfolio page and content contract
+### Task 1: Semantic portfolio page
 
 **Files:**
 - Create: `index.html`
-- Create: `assets/app.js`
-- Create: `tests/verify-portfolio.mjs`
 
 **Interfaces:**
 - Consumes: verified project copy from the design spec.
-- Produces: `index.html` with `#about`, `#skills`, `#projects`, `#contact`, and `#current-year`; `assets/app.js` sets the year.
+- Produces: `index.html` with `#about`, `#skills`, `#projects`, and `#contact`.
 
-- [ ] **Step 1: Write the failing content-contract test**
-
-```js
-const required = ['강주형', 'Campuslink', 'Reserva', 'github.com/KangJuHyeong/prototype', 'github.com/KangJuHyeong/reserva', 'id="current-year"'];
-for (const value of required) assert.ok(html.includes(value), `missing: ${value}`);
-```
-
-- [ ] **Step 2: Run the test to verify it fails**
-
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: FAIL because `index.html` does not exist.
-
-- [ ] **Step 3: Implement the semantic document and minimal script**
+- [ ] **Step 1: Implement the semantic document**
 
 ```html
 <main>
@@ -52,24 +37,17 @@ Expected: FAIL because `index.html` does not exist.
   <section id="skills"><h2>핵심 기술</h2></section>
   <section id="projects"><h2>프로젝트</h2></section>
 </main>
-<footer id="contact">© <span id="current-year"></span> 강주형</footer>
-<script src="assets/app.js"></script>
+<footer id="contact">강주형 · Backend Developer</footer>
 ```
 
-```js
-document.querySelector('#current-year').textContent = String(new Date().getFullYear());
-```
+- [ ] **Step 2: Open the page in a browser and verify the two project links**
 
-- [ ] **Step 4: Run the content-contract test**
+Expected: Campuslink and Reserva project cards are visible and their repository links point to the verified GitHub URLs.
 
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: PASS.
-
-- [ ] **Step 5: Commit the content baseline**
+- [ ] **Step 3: Commit the content baseline**
 
 ```bash
-git add index.html assets/app.js tests/verify-portfolio.mjs
+git add index.html
 git commit -m "feat: add portfolio content"
 ```
 
@@ -79,28 +57,12 @@ git commit -m "feat: add portfolio content"
 - Create: `assets/styles.css`
 - Create: `assets/resume.pdf`
 - Modify: `index.html`
-- Modify: `tests/verify-portfolio.mjs`
 
 **Interfaces:**
 - Consumes: HTML section IDs from Task 1 and the generated résumé PDF.
 - Produces: `assets/styles.css`, a valid local resume link, cards that stack below 720px.
 
-- [ ] **Step 1: Extend the failing visual-contract test**
-
-```js
-for (const value of ['assets/styles.css', 'assets/resume.pdf', '다운로드']) {
-  assert.ok(html.includes(value), `missing: ${value}`);
-}
-assert.ok(existsSync('assets/resume.pdf'), 'missing resume PDF');
-```
-
-- [ ] **Step 2: Run the test to verify it fails**
-
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: FAIL because the stylesheet and PDF link are absent.
-
-- [ ] **Step 3: Add the visual system and resume link**
+- [ ] **Step 1: Add the visual system and resume link**
 
 ```css
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -112,20 +74,14 @@ a:focus-visible { outline: 3px solid #f4b860; outline-offset: 3px; }
 <a class="button primary" href="assets/resume.pdf" download>이력서 PDF 다운로드</a>
 ```
 
-- [ ] **Step 4: Copy the reviewed résumé PDF and rerun the test**
+- [ ] **Step 2: Copy the reviewed résumé PDF and preview at desktop and mobile widths**
 
-Run: `node tests/verify-portfolio.mjs`
+Expected: the download button opens the PDF and no content is clipped at either viewport width.
 
-Expected: PASS.
-
-- [ ] **Step 5: Preview at desktop and mobile widths, then commit**
-
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: PASS and no clipped content in browser preview.
+- [ ] **Step 3: Commit the visual layer**
 
 ```bash
-git add index.html assets/styles.css assets/resume.pdf tests/verify-portfolio.mjs
+git add index.html assets/styles.css assets/resume.pdf
 git commit -m "feat: style portfolio and add resume"
 ```
 
@@ -133,28 +89,12 @@ git commit -m "feat: style portfolio and add resume"
 
 **Files:**
 - Create: `.github/workflows/pages.yml`
-- Modify: `tests/verify-portfolio.mjs`
 
 **Interfaces:**
 - Consumes: static site files at repository root.
 - Produces: a workflow triggered on `main` push that configures Pages, uploads `.` and deploys the artifact.
 
-- [ ] **Step 1: Extend the failing deployment-contract test**
-
-```js
-const workflow = readFileSync('.github/workflows/pages.yml', 'utf8');
-for (const value of ['actions/configure-pages', 'actions/upload-pages-artifact', 'actions/deploy-pages']) {
-  assert.ok(workflow.includes(value), `workflow missing: ${value}`);
-}
-```
-
-- [ ] **Step 2: Run the test to verify it fails**
-
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: FAIL because the workflow is absent.
-
-- [ ] **Step 3: Add the Pages workflow**
+- [ ] **Step 1: Add the Pages workflow**
 
 ```yaml
 name: Deploy GitHub Pages
@@ -182,16 +122,12 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-- [ ] **Step 4: Run the full verification**
+- [ ] **Step 2: Validate the workflow structure and commit the deployment configuration**
 
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: PASS.
-
-- [ ] **Step 5: Commit the deployment configuration**
+Expected: GitHub Actions recognizes the workflow after the first push.
 
 ```bash
-git add .github/workflows/pages.yml tests/verify-portfolio.mjs
+git add .github/workflows/pages.yml
 git commit -m "ci: deploy portfolio to github pages"
 ```
 
@@ -211,14 +147,12 @@ git commit -m "ci: deploy portfolio to github pages"
 
 Public site: https://kangjuhyeong.github.io
 
-Verify content: `node tests/verify-portfolio.mjs`
+Verify content: open `index.html` in a browser
 ```
 
-- [ ] **Step 2: Run the verification before publishing**
+- [ ] **Step 2: Review the page and the PDF download before publishing**
 
-Run: `node tests/verify-portfolio.mjs`
-
-Expected: PASS.
+Expected: project descriptions, project links, and the PDF file match the reviewed résumé.
 
 - [ ] **Step 3: Create the public repository and push `main`**
 
