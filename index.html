@@ -84,25 +84,49 @@
             <div class="project-card-header"><p class="project-index">01</p><p class="project-meta">1인 개발 · 2026.05 — 현재</p></div>
             <h3>Campuslink</h3>
             <p class="project-summary">검증 기반 대학생 매칭 서비스</p>
-            <p>학생 인증을 거친 사용자의 추천·매칭과 토큰 기반 연락처 공개를 제공하는 웹 서비스입니다.</p>
-            <ul>
-              <li>전화 OTP, HttpOnly JWT Cookie, Redis Refresh Token으로 인증 흐름 구현</li>
-              <li>원장·멱등성 처리로 토큰 구매·환불의 데이터 정합성 관리</li>
-              <li>Toss Payments·SOLAPI 연동 및 Docker Compose·AWS Lightsail 배포 환경 구성</li>
-            </ul>
+            <p class="project-description">학생 인증을 거친 사용자의 추천·매칭과 토큰 기반 연락처 공개를 제공하는 웹 서비스입니다. 인증·결제·외부 발송처럼 실패와 중복이 발생할 수 있는 흐름의 정합성을 중심으로 구현했습니다.</p>
+            <section class="implementation-list" aria-label="Campuslink 핵심 구현">
+              <div>
+                <h4>인증과 세션 보안</h4>
+                <p>전화 OTP, HttpOnly JWT Cookie, Redis Refresh Token Rotation과 CSRF 방어를 조합해 인증·세션 흐름을 구성했습니다.</p>
+              </div>
+              <div>
+                <h4>토큰 결제 정합성</h4>
+                <p>원장과 Token Lot 모델에 비관적 락, 멱등성, 상태 전이를 적용해 구매·연락처 공개·환불의 중복 처리를 방지했습니다.</p>
+              </div>
+              <div>
+                <h4>외부 연동과 배포</h4>
+                <p>Toss Payments의 성공 페이지·Webhook·복구 요청을 단일 처리 흐름으로 다루고, SOLAPI 발송에는 Outbox와 Lease Worker를 적용했습니다. Docker Compose와 AWS Lightsail 기반 Staging 환경을 구성했습니다.</p>
+              </div>
+            </section>
             <p class="tag-list" aria-label="Campuslink 기술"><span>Java 21</span><span>Spring Boot</span><span>MySQL</span><span>Redis</span></p>
-            <a class="text-link" href="https://github.com/KangJuHyeong/prototype" target="_blank" rel="noreferrer">저장소 보기 <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://staging.campuslink.co.kr/home" target="_blank" rel="noreferrer">Staging 보기 <span aria-hidden="true">↗</span></a>
           </article>
           <article class="project-card">
             <div class="project-card-header"><p class="project-index">02</p><p class="project-meta">1인 개발</p></div>
             <h3>Reserva</h3>
             <p class="project-summary">이벤트 예약 서비스</p>
-            <p>사용자의 이벤트 탐색·예약과 주최자의 이벤트·예약 현황 관리를 위한 서비스입니다.</p>
-            <ul>
-              <li>이벤트 정보와 예약 재고를 분리해 관리</li>
-              <li>DB 락과 트랜잭션으로 동시 요청의 초과 예약 방지</li>
-              <li>JWT 및 Google OAuth 기반 인증 구현</li>
-            </ul>
+            <p class="project-description">사용자의 이벤트 탐색·예약과 주최자의 이벤트·예약 현황 관리를 위한 서비스입니다. 예약 재고를 별도 모델로 관리하고 동시성 문제를 제어하는 데 집중했습니다.</p>
+            <div class="project-screens" aria-label="Reserva 화면 예시">
+              <figure>
+                <img src="https://raw.githubusercontent.com/KangJuHyeong/reserva/main/docs/assets/readme/home-discovery.png" alt="Reserva 이벤트 탐색 화면" loading="lazy" />
+                <figcaption>이벤트 탐색 화면 · 로컬 더미 데이터</figcaption>
+              </figure>
+              <figure>
+                <img src="https://raw.githubusercontent.com/KangJuHyeong/reserva/main/docs/assets/readme/event-detail.png" alt="Reserva 이벤트 상세와 예약 화면" loading="lazy" />
+                <figcaption>이벤트 상세·예약 화면 · 로컬 더미 데이터</figcaption>
+              </figure>
+            </div>
+            <section class="implementation-list" aria-label="Reserva 핵심 구현">
+              <div>
+                <h4>예약 재고와 동시성 제어</h4>
+                <p>이벤트 정보와 예약 재고를 분리하고, DB 락과 트랜잭션으로 동시에 들어온 예약 요청의 초과 예약을 방지했습니다.</p>
+              </div>
+              <div>
+                <h4>탐색과 인증</h4>
+                <p>QueryDSL로 이벤트 탐색 쿼리를 구성하고, JWT 및 Google OAuth 기반 인증을 구현했습니다.</p>
+              </div>
+            </section>
             <p class="tag-list" aria-label="Reserva 기술"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>QueryDSL</span></p>
             <a class="text-link" href="https://github.com/KangJuHyeong/reserva" target="_blank" rel="noreferrer">저장소 보기 <span aria-hidden="true">↗</span></a>
           </article>
