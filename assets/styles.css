@@ -29,7 +29,7 @@ h1 { margin-bottom: 2px; font-size: clamp(3.25rem, 10vw, 6.6rem); letter-spacing
 .skills-grid > div { padding: 20px; background: #fff; border: 1px solid #e0eaed; border-radius: 12px; }
 .skills-grid dt { margin-bottom: 7px; color: var(--accent); font-weight: 800; }
 .skills-grid dd { margin: 0; color: var(--slate); font-size: 0.94rem; }
-.background-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.background-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .background-card { padding: 28px 30px; background: #fff; border: 1px solid #e0eaed; border-radius: var(--radius); }
 .background-label { margin-bottom: 22px; color: var(--accent); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; }
 .background-entry + .background-entry { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e0eaed; }
@@ -52,12 +52,26 @@ h1 { margin-bottom: 2px; font-size: clamp(3.25rem, 10vw, 6.6rem); letter-spacing
 .project-screens figure { margin: 0; overflow: hidden; border: 1px solid #dce7eb; border-radius: 12px; background: #f6fafb; }
 .project-screens img { display: block; width: 100%; height: 180px; object-fit: cover; object-position: top; }
 .project-screens figcaption { padding: 8px 10px; color: var(--slate); font-size: 0.76rem; }
+.evidence-section, .api-flow { margin-top: 26px; }
+.evidence-section h4, .api-flow h4 { margin: 0 0 8px; color: var(--accent-dark); font-size: 1rem; }
+.evidence-note { margin-bottom: 14px; color: var(--slate); font-size: 0.88rem; }
+.evidence-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.evidence-grid figure { margin: 0; overflow: hidden; border: 1px solid #d5e4e8; border-radius: 12px; background: #fff; }
+.evidence-grid img { display: block; width: 100%; height: 310px; object-fit: contain; object-position: top; background: #f5f7f8; }
+.evidence-grid figcaption { padding: 9px 10px; color: var(--slate); font-size: 0.76rem; line-height: 1.45; }
+.api-flow { padding: 18px; border: 1px solid #cfe0e5; border-radius: 12px; background: rgb(255 255 255 / 60%); }
+.api-flow ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: flow; }
+.api-flow li { position: relative; padding: 12px 12px 12px 38px; border-radius: 9px; background: #fff; color: var(--slate); font-size: 0.78rem; line-height: 1.55; counter-increment: flow; }
+.api-flow li::before { position: absolute; top: 12px; left: 12px; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; content: counter(flow); font-size: 0.7rem; font-weight: 800; }
+.api-flow strong, .api-flow span { display: block; }
+.api-flow strong { margin-bottom: 4px; color: var(--accent-dark); }
 .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 24px; }
 .tag-list span { padding: 3px 9px; color: var(--accent-dark); background: #dcebed; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
 .text-link { display: inline-flex; gap: 7px; width: fit-content; margin-top: 22px; color: var(--accent); font-size: 0.9rem; font-weight: 800; text-underline-offset: 4px; }
-footer { display: flex; align-items: end; justify-content: space-between; gap: 40px; padding: 56px 0 64px; border-top: 1px solid var(--line); }
+footer { padding: 32px 0 42px; color: var(--slate); font-size: 0.84rem; border-top: 1px solid var(--line); }
+footer p { margin: 0; }
 .footer-links { display: grid; gap: 5px; color: var(--slate); font-size: 0.95rem; }
 .footer-links a { text-underline-offset: 4px; }
 @media (max-width: 720px) { .site-header, .section, footer { width: min(100% - 32px, 1080px); } .site-header { min-height: 70px; } nav { gap: 14px; font-size: 0.86rem; } .hero, .section { padding: 58px 0; } .skills-grid, .background-grid, .project-grid { grid-template-columns: 1fr; } .project-card, .background-card { padding: 24px; } footer { flex-direction: column; align-items: flex-start; gap: 26px; padding: 46px 0; } }
 @media (max-width: 390px) { nav a:first-child { display: none; } .hero-actions .button { width: 100%; } }
-@media (max-width: 720px) { .implementation-list, .project-screens { grid-template-columns: 1fr; } .project-screens img { height: 195px; } }
+@media (max-width: 720px) { .implementation-list, .project-screens, .evidence-grid, .api-flow ol { grid-template-columns: 1fr; } .project-screens img { height: 195px; } .evidence-grid img { height: auto; max-height: 620px; } }
