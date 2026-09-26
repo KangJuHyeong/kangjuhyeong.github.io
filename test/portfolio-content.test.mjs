@@ -20,3 +20,7 @@ test("does not name Campuslink Harness in the workflow", () => {
   assert.match(portfolio, /<dt>Workflow<\/dt><dd>Git · GitHub · Codex<\/dd>/);
   assert.doesNotMatch(portfolio, /Campuslink Harness/);
 });
+
+test("links to the refreshed resume download", () => {
+  assert.match(portfolio, /assets\/resume\.pdf\?v=20260926b/);
+});
